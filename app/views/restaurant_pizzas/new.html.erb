@@ -1,0 +1,27 @@
+<% if !!flash[:error] %>
+    <ul>    
+        <% flash[:error].each do |error| %>
+        <li><%= error %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+
+<%= form_with model: @restaurant_pizza, local: true do |f| %>
+
+    <%= f.label :restaurant_id %>
+    <%= f.collection_select :restaurant_id, Restaurant.all, :id, :name %>
+    <%= f.collection_select :restaurant_id, Restaurant.all, :id, :address %>
+
+
+    <%= f.label :pizza_id %>
+    <%= f.collection_select :pizza_id, Pizza.all, :id, :name %>
+    <%= f.collection_select :pizza_id, Pizza.all, :id, :ingredients %>
+
+
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+
+    <%= f.submit %>
+
+<% end %>
