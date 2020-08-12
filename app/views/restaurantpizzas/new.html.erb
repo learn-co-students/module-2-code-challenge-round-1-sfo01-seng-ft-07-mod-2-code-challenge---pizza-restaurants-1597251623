@@ -1,0 +1,12 @@
+<h1>Create your pizza for a restaurant</h1>
+    <% if @restaurantpizza.errors.any? %>
+    <% @restaurantpizza.errors.full_messages.each do |message| %>
+    <%= message%>
+<% end %>
+<% end %>
+<%=form_for @restaurantpizza do |f| %>
+	<%= f.collection_select  :pizza_id, Pizza.all, :id, :name%> 
+	<%= f.collection_select :restaurant_id, Restaurant.all, :id, :name %>
+    <%= f.number_field :price, step: :any %>
+    <%= f.submit %>
+<% end %>
